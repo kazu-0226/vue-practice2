@@ -16,6 +16,10 @@
             メッセージ反転
         </button>
         <div v-html="html">{{html}}</div>
+        <a v-bind:href="url">Google</a>
+        <a :[attribute]="urlTwiiter" :id="number">twitter</a>
+        <a v-bind="{href: urlTwiiter, id:number}">twitter2</a>
+        <a v-bind="twitterObject">twitter3</a>
     </div>
     <script>
         new Vue({
@@ -24,7 +28,14 @@
                 message: 'HelloWorld',
                 number: 3,
                 ok: true,
-                html: '<h1>h1です</h1>'
+                html: '<h1>h1です</h1>',
+                url: 'https://google.com',
+                urlTwiiter: 'https://twitter.com',
+                attribute: 'href',
+                twitterObject:{
+                    href: 'https://twitter.com',
+                    id: 3
+                }
             },
             methods: {
                 reverseMessage: function(){
