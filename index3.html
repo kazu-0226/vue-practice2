@@ -11,8 +11,9 @@
         <input type="text" v-model="message">
         <h1>{{ message }}</h1>
         <p>{{ counter }}</p>
-        <button v-on:click="counter += 1">+1</button>
+        <button @click = "counter += 1">+1</button>
         <p>{{ lessThanThree }}</p>
+        
     </div>
 
     <script>
@@ -22,10 +23,19 @@
                 message: 'こんにちは',
                 counter: 0
             },
-            computes: {
+            computed: {
                 lessThanThree: function(){
-                    return this.counter > 3 ? '３より上' : '３より下'
+                    return this.counter > 3 ? '３より上' : '３より下';
                 }
+            },
+            watch: {
+                counter: function(){
+                    var vm = this;
+                    setTimeout(function(){
+                        vm.counter = 0
+                    }, 3000)
+                }
+
             }
         })
     </script>
