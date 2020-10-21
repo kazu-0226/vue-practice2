@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>現在{{ counter }}回クリック</p>
+        <button @click = "countUp">カウントアップ</button>
+        <button @click = "countUp">カウントアップ</button>
+        <!-- computedには必ず()を付けない -->
+        <p>{{ doubleCounterComuted}}</p>
+        <!-- methodsには必ず()を付ける -->
+        <p>{{ doubleCounterMethod() }}</p>
+    </div>
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                counter: 0
+            },
+            computed: {
+                doubleCounterComuted: function(){
+                    return this.counter * 2;
+                }
+            },
+            methods: {
+                countUp:function(){
+                    this.counter += 1;
+                },
+                doubleCounterMethod: function(){
+                    return this.counter * 2;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

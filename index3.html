@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="message">
+        <h1>{{ message }}</h1>
+        <p>{{ counter }}</p>
+        <button @click = "counter += 1">+1</button>
+        <p>{{ lessThanThree }}</p>
+        
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'こんにちは',
+                counter: 0
+            },
+            computed: {
+                lessThanThree: function(){
+                    return this.counter > 3 ? '３より上' : '３より下';
+                }
+            },
+            watch: {
+                counter: function(){
+                    var vm = this;
+                    setTimeout(function(){
+                        vm.counter = 0
+                    }, 3000)
+                }
+
+            }
+        })
+    </script>
+</body>
+</html>
