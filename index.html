@@ -21,6 +21,12 @@
         <a v-bind="{href: urlTwiiter, id:number}">twitter2</a>
         <a v-bind="twitterObject">twitter3</a>
     </div>
+    <div id="app2">
+        <p>現在{{ number }}回クリック</p>
+        <button v-on:click = "countUp">カウントアップ</button>
+        <p v-on:mousemove= "changeMousePosition">マウスを乗せてください</p>
+        <p>X:{{x}}, Y:{{y}}</p>
+    </div>
     <script>
         new Vue({
             el: '#app',
@@ -44,6 +50,24 @@
                 sayHi: function(){
                     this.message = "Hello vue"
                     return 'Hi';
+                }
+            }
+        })
+        new Vue({
+            el: '#app2',
+            data:{
+                number: 0,
+                x:0,
+                y:0
+            },
+            methods: {
+                countUp:function(){
+                    this.number += 1
+                },
+                changeMousePosition: function(event){
+                    console.log(event)
+                    this.x = event.clientX;
+                    this.y = event.clientY;
                 }
             }
         })
