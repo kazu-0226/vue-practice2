@@ -23,9 +23,15 @@
     </div>
     <div id="app2">
         <p>現在{{ number }}回クリック</p>
-        <button v-on:click = "countUp">カウントアップ</button>
-        <p v-on:mousemove= "changeMousePosition">マウスを乗せてください</p>
+        <button v-on:click = "countUp(2)">カウントアップ</button>
+        <p v-on:mousemove= "changeMousePosition(3, $event)">マウスを乗せてください
+            <span v-on:mousemove="noEvent">反応させない</span>
+            <span v-on:mousemove.stop>反応させない</span>
+            <a v-on:click="noClick" href="https://google.com">Google</a>
+            <a v-on:click.prevent.stop href="https://google.com">Google</a>
+        </p>
         <p>X:{{x}}, Y:{{y}}</p>
+        <input type="text" v-on:keyup.enter.space="myAlert">
     </div>
     <script>
         new Vue({
@@ -61,13 +67,21 @@
                 y:0
             },
             methods: {
-                countUp:function(){
-                    this.number += 1
+                countUp:function(times){
+                    this.number += 1 * times
                 },
-                changeMousePosition: function(event){
-                    console.log(event)
-                    this.x = event.clientX;
-                    this.y = event.clientY;
+                changeMousePosition: function(divide, event){
+                    this.x = event.clientX / divide;
+                    this.y = event.clientY / divide;
+                },
+                noEvent: function(event){
+                    event.stopPropagation();
+                },
+                noClick: function(evenr){
+                    event.preventDefault();
+                },
+                myAlert(){
+                    alert('アラート');
                 }
             }
         })
