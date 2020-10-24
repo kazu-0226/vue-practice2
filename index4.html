@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <div v-for="fruit in fruits" v-bind:key="fruit">
+                <p>{{fruit}}</p>
+                <input type="text">
+            </div>
+        </ul>
+        <button @click="remove">先頭を削除</button>
+    </div>
+
+    <div id="app2">
+        <ul>
+            <div v-for="fruit in fruits">
+                <p>{{fruit}}</p>
+                <input type="text">
+            </div>
+        </ul>
+        <button @click="remove">先頭を削除</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                fruits: ['りんご', 'バナナ', 'ぶどう']
+            },
+            methods: {
+                remove: function(){
+                    this.fruits.shift()
+                }
+            }
+        })
+
+        new Vue({
+            el: '#app2',
+            data: {
+                fruits: ['りんご', 'バナナ', 'ぶどう']
+            },
+            methods: {
+                remove: function(){
+                    this.fruits.shift()
+                }
+            }
+        })
+    </script>
+</body>
+</html>
